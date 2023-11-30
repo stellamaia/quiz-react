@@ -4,18 +4,23 @@ import questions from '../data/questions';
 const STAGES = ['Start', 'Playing', 'End']
 //Cria o objeto initialState e cria propriedades que referem ao jogo
 const initialState = {
-    gameState: STAGES[0],//estagio inicial do jogo
-    questions//perguntas do jogo
+    gameStage: STAGES[0],//estagio inicial do jogo
+    questions,//perguntas do jogo
+    currentQuestion: 0,
 }
 
-const quizReducer = (state, action)=> {
-console.log(state, action);
-switch(action.type){
-    case 'CHANGE_STATE':
-        return state;
+const quizReducer = (state, action) => {
+    console.log(state, action);
+
+    switch (action.type) {
+        case 'CHANGE_STATE':
+    return {
+        ...state,
+        gameStage: STAGES[1],
+    };
         default:
             return state;
-}
+    }
 };
 export const QuizContext = createContext()
 
